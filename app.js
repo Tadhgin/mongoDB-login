@@ -8,7 +8,7 @@ var express = require("express"),
 const User = require("./model/user");
 var app = express();
 
-mongoose.connect("mongodb://localhost/27017");
+mongoose.connect("mongodb://localhost:27017/mydatabase");
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -88,16 +88,14 @@ app.get("/logout", function (req, res) {
       });
 });
 
-
-
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) return next();
     res.redirect("/login");
 }
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 27017;
 app.listen(port, function () {
     console.log("Server Has Started!");
 });
 
-//  http://localhost:3000/
+//  http://localhost:27017/mydatabase
